@@ -47,7 +47,7 @@ export default {
       if (!this.text) {
         alert('Please add task');
       } else {
-        this.$emit('createTask', {
+        this.$store.dispatch('createTask', {
           ...this.$data,
           id: idGenerator.next().value,
         });

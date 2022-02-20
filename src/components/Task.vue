@@ -1,11 +1,14 @@
 <template>
   <div
-    @dblclick="$emit('changeRemind', task.id)"
+    @dblclick="$store.dispatch('changeRemind', task.id)"
     :class="[task.reminder && 'reminder', 'task']"
   >
     <h3>
       {{ task.text }}
-      <i @click="$emit('deleteTask', task.id)" class="fas fa-times"></i>
+      <i
+        @click="$store.dispatch('deleteTask', task.id)"
+        class="fas fa-times"
+      ></i>
     </h3>
     <p>{{ task.day }}</p>
   </div>
@@ -17,7 +20,6 @@ export default {
   props: {
     task: Object,
   },
-  emits: ['deleteTask', 'changeRemind'],
 };
 </script>
 

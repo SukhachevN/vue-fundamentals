@@ -1,6 +1,6 @@
 <template>
   <AddTask v-show="showAddTaskVal" @createTask="createTask" />
-  <Tasks @changeRemind="changeRemind" @deleteTask="deleteTask" :tasks="tasks" />
+  <Tasks @changeRemind="changeRemind" @deleteTask="deleteTask" />
 </template>
 
 <script>
@@ -11,35 +11,6 @@ export default {
   components: { AddTask, Tasks },
   props: {
     showAddTaskVal: Boolean,
-  },
-  data() {
-    return {
-      tasks: [],
-    };
-  },
-  methods: {
-    deleteTask(delId) {
-      if (confirm('Ban chắc chắn à?')) {
-        this.tasks = this.tasks.filter(({ id }) => id !== delId);
-      }
-    },
-    changeRemind(remindId) {
-      this.tasks = this.tasks.map((task) => {
-        if (task.id === remindId) {
-          return {
-            ...task,
-            reminder: !task.reminder,
-          };
-        }
-        return task;
-      });
-    },
-    createTask(task) {
-      this.tasks = [...this.tasks, task];
-    },
-  },
-  created() {
-    this.tasks = [];
   },
 };
 </script>
